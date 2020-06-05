@@ -119,14 +119,14 @@
 			</div>
 			<div class="row mg">
 				<div class="col-lg-6 col-md-6 col-sm-12 mg">
-					<button type="button" class="btn btn-success" style="width:100%;">Create Combo</button>
+					<button type="button" class="btn btn-success combo-create" style="width:100%;">Create Combo</button>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 mg">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">Result</span>
 						</div>
-						<input type="text" class="form-control" disabled>
+						<input type="text" class="form-control result-box" disabled>
 					</div>
 				</div>
 			</div>
@@ -142,6 +142,15 @@
 				$(".custom-file-input").on("change", function() {
 					var fileName = $(this).val().split("\\").pop();
 					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+				});
+				$(".combo-create").on("click",function(){
+					$(".result-box").val("create the combo list ...");
+					$.ajax({
+						url:"combo_maker.php",
+						success:function(result){
+							$(".result-box").val(result);
+						}
+					});
 				});
 			});
 		</script>
