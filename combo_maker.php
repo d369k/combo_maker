@@ -3,7 +3,11 @@
 		$username_list = file("username.txt");
 		$password_list = file("password.txt");
 		$delimiter = file_get_contents("delimiter.txt");
-		touch("combo.txt");
+		if(is_file("combo.txt")){
+			file_put_contents("combo.txt","");
+		}else{
+			touch("combo.txt");
+		}
 		$open_file = fopen("combo.txt","a+");
 		for($i = 0; $i < count($username_list); $i++){
 			for($j = 0; $j < count($password_list); $j++){
