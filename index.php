@@ -121,13 +121,19 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 mg">
 					<button type="button" class="btn btn-success combo-create" style="width:100%;">Create Combo</button>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12 mg">
+				<div class="col-lg-5 col-md-6 col-sm-12 mg">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">Result</span>
 						</div>
 						<input type="text" class="form-control result-box" disabled>
 					</div>
+				</div>
+				<div class="col-lg-1 col-md-1 col-sm-12 mg">
+					<?php
+						$link = is_file("combo.txt")?"combo.txt":"#combo_not_found";
+					?>
+					<a href="<?=$link?>" class="btn btn-danger show-combo" style="color:#fff">SHOW</a>
 				</div>
 			</div>
 			<div class="col-sm-12 text-center">
@@ -149,6 +155,7 @@
 						url:"combo_maker.php",
 						success:function(result){
 							$(".result-box").val(result);
+							$(".show-combo").attr("href","combo.txt");
 						}
 					});
 				});
